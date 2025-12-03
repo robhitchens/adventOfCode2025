@@ -1,39 +1,5 @@
 #!/usr/bin/env bash
 
-function mainog {
-	local inputFile="$1"
-	local zeroCount=0
-	local currentPosition=50
-	while IFS=$'\n' read -r line; do
-		#	local pos=(${line/\v(L|R)([0-9]+)/\1\ \2/})
-		local pos=($(echo "$line" | sed -E 's/(L|R)([0-9]+)/\1 \2/'))
-		echo "input: ${pos[@]}"
-		if [[ "${pos[0]}" == 'L' ]]; then
-			echo "expr : $currentPosition - ${pos[1]}"
-			((currentPosition = currentPosition - ${pos[1]}))
-		elif [[ "${pos[0]}" == 'R' ]]; then
-			echo "expr : $currentPosition + ${pos[1]}"
-			((currentPosition = currentPosition + ${pos[1]}))
-		fi
-
-		echo "adjus: $currentPosition"
-		local sub=$((currentPosition % 100))
-		if ((currentPosition < 0)); then
-			echo "readj: 100 + $sub"
-			((currentPosition = 100 + sub))
-		elif ((currentPosition > 99)); then
-			echo "readj: $sub"
-			((currentPosition = sub))
-		fi
-		echo "end  : $currentPosition"
-
-		if ((currentPosition == 0)); then
-			((zeroCount += 1))
-		fi
-	done <$inputFile
-	echo "$zeroCount"
-}
-
 function main {
 	while getopts 'd' opt; do
 		case "$opt" in
