@@ -32,9 +32,10 @@ function main {
 			continue
 		fi
 		log "cur  : $dial"
-
-		#	local pos=(${line/\v(L|R)([0-9]+)/\1\ \2/})
-		local pos=($(echo "$line" | sed -E 's/(L|R)([0-9]+)/\1 \2/'))
+		if [[ "$line" =~ "(L|R)([0-9]+)" ]]; then
+			local pos=("${BASH_REMATCH[1]}" "${BASH_REMATCH[2]}")
+		fi
+		#local pos=($(echo "$line" | sed -E 's/(L|R)([0-9]+)/\1 \2/'))
 		log "input: ${pos[@]}"
 
 		if [[ "${pos[0]}" == 'L' ]]; then
