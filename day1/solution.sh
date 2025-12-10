@@ -33,7 +33,7 @@ function main {
 		fi
 		log "cur  : $dial"
 		if [[ $line =~ (L|R)([0-9]+) ]]; then
-			local pos=("${BASH_REMATCH[1]}" "${BASH_REMATCH[2]}")
+			local pos=(${BASH_REMATCH[@]:1})
 			log "pos v: ${pos[@]}"
 		else
 			log "$line didn't match expression"
