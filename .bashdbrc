@@ -1,4 +1,5 @@
-b 20
+b 36
+b 80
 display ${pos[@]}
 display $dial
 display $zeroCount
