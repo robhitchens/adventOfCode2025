@@ -125,9 +125,10 @@ function part2 {
 		log "end  : $dial
 "
 
-		if ((dial == 0)); then
-			((zeroCount += 1))
-		fi
+		# TODO: double check, but this may not be needed for part two
+		#if ((dial == 0)); then
+		#	((zeroCount += 1))
+		#fi
 
 	done <$inputFile
 	echo "$zeroCount"
