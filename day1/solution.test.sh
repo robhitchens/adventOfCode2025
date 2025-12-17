@@ -44,5 +44,5 @@ function part2_test_usingRealInput {
 	local output="$(./day1/solution.sh p2 ./day1/p1-input.txt)"
 
 	# FIXME: figure out what the actual answer is.
-	assert "$output" equals "0"
+	assert "$output" equals "3921"
 }
